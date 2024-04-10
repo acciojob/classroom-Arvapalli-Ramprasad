@@ -1,6 +1,11 @@
+// StudentRepository.java
+package com.driver;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class StudentRepository {
