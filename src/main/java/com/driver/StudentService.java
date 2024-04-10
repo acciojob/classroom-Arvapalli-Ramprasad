@@ -1,6 +1,7 @@
+// StudentService.java
 package com.driver;
 
-import java.util.*;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class StudentService {
 
     @Autowired
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
     public void addStudent(Student student){
         studentRepository.saveStudent(student);
@@ -19,8 +20,8 @@ public class StudentService {
         studentRepository.saveTeacher(teacher);
     }
 
-    public void createStudentTeacherPair(String student, String teacher){
-        studentRepository.saveStudentTeacherPair(student, teacher);
+    public void createStudentTeacherPair(String studentName, String teacherName){
+        studentRepository.saveStudentTeacherPair(studentName, teacherName);
     }
 
     public Student findStudent(String studentName){
@@ -31,16 +32,16 @@ public class StudentService {
         return studentRepository.findTeacher(teacherName);
     }
 
-    public List<String> findStudentsFromTeacher(String teacher){
-        return studentRepository.findStudentsFromTeacher(teacher);
+    public List<String> findStudentsFromTeacher(String teacherName){
+        return studentRepository.findStudentsFromTeacher(teacherName);
     }
 
     public List<String> findAllStudents(){
         return studentRepository.findAllStudents();
     }
 
-    public void deleteTeacher(String teacher){
-        studentRepository.deleteTeacher(teacher);
+    public void deleteTeacher(String teacherName){
+        studentRepository.deleteTeacher(teacherName);
     }
 
     public void deleteAllTeachers(){
