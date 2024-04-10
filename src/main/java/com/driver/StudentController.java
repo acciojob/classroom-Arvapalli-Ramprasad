@@ -1,4 +1,3 @@
-// StudentController.java
 package com.driver;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("students")
+@RequestMapping("/students")
 public class StudentController {
 
     @Autowired
@@ -79,6 +78,12 @@ public class StudentController {
     @DeleteMapping("/delete-teacher-by-name")
     public ResponseEntity<String> deleteTeacherByName(@RequestParam String teacher){
         studentService.deleteTeacher(teacher);
-        return
+        return new ResponseEntity<>(teacher + " removed successfully", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete-all-teachers")
+    public ResponseEntity<String> deleteAllTeachers(){
+        studentService.deleteAllTeachers();
+        return new ResponseEntity<>("All teachers deleted successfully", HttpStatus.OK);
     }
 }
