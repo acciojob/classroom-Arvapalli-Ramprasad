@@ -80,3 +80,5 @@ public class StudentController {
     public ResponseEntity<String> deleteTeacherByName(@RequestParam String teacher){
         studentService.deleteTeacher(teacher);
         return
+    }
+}
