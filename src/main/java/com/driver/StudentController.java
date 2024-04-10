@@ -39,30 +39,54 @@ public class StudentController {
 
     @GetMapping("/get-student-by-name/{name}")
     public ResponseEntity<Student> getStudentByName(@PathVariable String name){
-        Student student = null; // Assign student by calling service layer method
+        // Student student = null; // Assign student by calling service layer method
 
-        return new ResponseEntity<>(student, HttpStatus.CREATED);
+        // return new ResponseEntity<>(student, HttpStatus.CREATED);
+
+        Student student = studentService.findStudent(name);
+        if (student == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student not found");
+        }
+        return ResponseEntity.ok(student);
     }
 
     @GetMapping("/get-teacher-by-name/{name}")
     public ResponseEntity<Teacher> getTeacherByName(@PathVariable String name){
-        Teacher teacher = null; // Assign student by calling service layer method
+        // Teacher teacher = null; // Assign student by calling service layer method
 
-        return new ResponseEntity<>(teacher, HttpStatus.CREATED);
+        // return new ResponseEntity<>(teacher, HttpStatus.CREATED);
+
+
+        Teacher teacher = studentService.findTeacher(name);
+        if (teacher == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Teacher not found");
+        }
+        return ResponseEntity.ok(teacher);
     }
 
     @GetMapping("/get-students-by-teacher-name/{teacher}")
     public ResponseEntity<List<String>> getStudentsByTeacherName(@PathVariable String teacher){
-        List<String> students = null; // Assign list of student by calling service layer method
+        // List<String> students = null; // Assign list of student by calling service layer method
 
-        return new ResponseEntity<>(students, HttpStatus.CREATED);
+        // return new ResponseEntity<>(students, HttpStatus.CREATED);
+        List<String> students = studentService.findStudentsFromTeacher(teacher);
+        if (students == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No students found for the given teacher");
+        }
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
     @GetMapping("/get-all-students")
     public ResponseEntity<List<String>> getAllStudents(){
-        List<String> students = null; // Assign list of student by calling service layer method
+        // List<String> students = null; // Assign list of student by calling service layer method
 
-        return new ResponseEntity<>(students, HttpStatus.CREATED);
+        // return new ResponseEntity<>(students, HttpStatus.CREATED);
+
+        List<String> students = studentService.findAllStudents();
+        if (students == null || students.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No students found");
+        }
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-teacher-by-name")
