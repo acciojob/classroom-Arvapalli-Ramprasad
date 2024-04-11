@@ -2,6 +2,7 @@
 // StudentRepository.java
 package com.driver;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,12 +52,44 @@ public class StudentRepository {
     }
 
     public void deleteTeacher(String teacherName) {
-        teacherMap.remove(teacherName);
-        teacherStudentMapping.remove(teacherName);
+        List<String> student = new ArrayList<>();
+        if(teacherStudentMapping.containsKey(teacherName)){
+            student = teacherStudentMapping.get(teacherName);
+            for(String s :student){
+                if(studentMap.containsKey(s)){
+                    studentMap.remove(student);
+                }
+            }
+            teacherStudentMapping.remove(teacherName);
+        }
+        if(teacherMap.containsKey(teacherName)){
+            teacherMap.remove(teacherName);
+        }
     }
 
     public void deleteAllTeachers() {
-        teacherMap.clear();
-        teacherStudentMapping.clear();
+        HashSet<String> studentsSet = new HashSet<String>();
+
+        for(String teacher: teacherStudentMapping.keySet()){
+
+            for(String student: teacherStudentMapping.get(teacher)){
+
+                studentsSet.add(student);
+
+            }
+
+        }
+
+        for(String student: studentsSet){
+
+            if(studentMap.containsKey(student)){
+
+                studentMap.remove(student);
+
+            }
+
+        }
+
     }
+
 }
