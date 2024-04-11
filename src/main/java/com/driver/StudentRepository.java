@@ -1,3 +1,4 @@
+
 // StudentRepository.java
 package com.driver;
 
@@ -23,12 +24,13 @@ public class StudentRepository {
     }
 
     public void saveStudentTeacherPair(String studentName, String teacherName) {
-        if (teacherStudentMapping.containsKey(teacherName)) {
-            teacherStudentMapping.get(teacherName).add(studentName);
-        } else {
-            List<String> students = new ArrayList<>();
-            students.add(studentName);
-            teacherStudentMapping.put(teacherName, students);
+        if(studentMap.containsKey(studentName) && teacherMap.containsKey(teacherName)) {
+            List<String> currentStudents = new ArrayList<String>();
+            if (teacherStudentMapping.containsKey(teacherName)) {
+                currentStudents = teacherStudentMapping.get(teacherName);
+            }
+            currentStudents.add(studentName);
+            teacherStudentMapping.put(teacherName, currentStudents);
         }
     }
 
