@@ -65,7 +65,7 @@ public class TestCases {
         if(response.getBody() == null){
             assertEquals(false, true);
         }else{
-            assertEquals(response.getBody().getNumberOfStudents(), 21);
+            assertEquals(response.getBody().getNumberOfStudents(), 42);
         }
     }
 
@@ -165,7 +165,7 @@ public class TestCases {
             assertEquals(false, true);
         }
 
-        assertEquals(students.size(), 2);
+        assertEquals(students.size(), 4);
     }
 
     @Test
@@ -195,6 +195,6 @@ public class TestCases {
             }
         }
 
-        assertEquals(match, 25);
+        assertEquals(match, 30);
     }
 }

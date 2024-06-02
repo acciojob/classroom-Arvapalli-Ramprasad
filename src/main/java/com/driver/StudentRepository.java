@@ -56,10 +56,8 @@ public class StudentRepository {
     }
 
     public void deleteAllTeachers() {
-<<<<<<< HEAD
         teacherStudentMapping.clear();
         teacherMap.clear();
-=======
         for(String teacher :teacherMap.keySet()){
             for (String student : teacherStudentMapping.get(teacher)) {
                 
@@ -68,6 +66,5 @@ public class StudentRepository {
             teacherStudentMapping.remove(teacher);
             teacherMap.remove(teacher);
         }
->>>>>>> 31506fcf9f6ab20cbd5d6ae2caa4c30efa8a98ae
     }
 }
