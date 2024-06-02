@@ -15,6 +15,7 @@ public class StudentRepository {
 
     public void saveStudent(Student student) {
         studentMap.put(student.getName(), student);
+        System.out.println(student.getName());
     }
 
     public void saveTeacher(Teacher teacher) {
