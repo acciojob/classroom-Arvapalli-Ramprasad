@@ -1,4 +1,3 @@
-// Student.java
 package com.driver;
 
 public class Student {
@@ -14,6 +13,7 @@ public class Student {
         this.averageScore = averageScore;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
